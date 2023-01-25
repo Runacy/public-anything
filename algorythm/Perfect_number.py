@@ -15,20 +15,19 @@ class Solution:
         # 初期値はans = 1
         # filterはgenerator
         # if num % x == 0
-        res = 1
-        tmp = []
-        def f(res, x):
-            res += x
-            tmp.append(res)
-            return res
-        [f(res, x) for x in range(2, num//2 + 1) if num % x == 0]
-        print(tmp)
+        
+        if num <= 1:
+            return False
+        ans=1
+        print(num**0.5)
+        print(num//2)
 
-
-# これはx
-# 10000000くらいなら回せるけどなあ
-
-
-if __name__ == "__main__":
-    s = Solution()
-    print(s.checkPerfectNumber(28))
+        for i in range(2,int(num*0.5)+1): 
+            if num % i==0:
+                print(ans, i,  num//i)
+                ans += i + num//i # 外と外、うちとうちというふうに計算できるようになる
+                # しかし、0.5かけただけでは、反対が存在するため、さらにその半分で良い
+                # https://www.keisan-mondai.com/1889.htm#:~:text=1%E3%81%8B%E3%82%89100%E3%81%BE%E3%81%A7%E3%81%AE%E5%92%8C%E3%81%AF5050%E3%81%A7%E3%81%99%E3%80%82,-%E9%85%8D%E5%88%97%E9%96%A2%E6%95%B0%E3%82%92
+                # ガウスの和と同じことをやってる
+        
+        return num == ans
